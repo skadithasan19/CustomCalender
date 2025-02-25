@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-struct Capsule: View {
+struct CapsuleBarView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Capsule()
+            .fill(Color.red) // Change color as needed
+            .frame(width: 20, height: 5) // Adjust size
+            .shadow(radius: 2) // Optional shadow
     }
 }
 
-#Preview {
-    Capsule()
+ 
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        CapsuleBarView()
+    }
 }
