@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @State private var currentMonth: Date = Date()
-    @State private var selectedDate: Date?
+    @State var currentMonth: Date = Date()
+    @State var selectedDate: Date?
     
     let calendar = Calendar.current
     let eventColors: [Date: [Color]] = [
