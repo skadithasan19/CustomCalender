@@ -60,3 +60,58 @@ final class CustomCalenderTests: XCTestCase {
         XCTAssertNotNil(view.eventColors[testDate], "Event colors should not be nil for a date with events")
     }
 }
+
+/*
+class CalendarViewModel: ObservableObject {
+    @Published var currentMonth: Date = Date()
+    @Published var selectedDate: Date = Date()
+    @Published var availableDatesForSelection: [Date] = []
+    let daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    @Published var calendar = Calendar.current
+    @Published var enableDateSelection: Bool = false
+    var action: (Date) -> Void
+    @Published var eventPills: [Date: [LegendType]]
+    init(currentMonth: Date,
+         availableDatesForSelection: [Date],
+         enableDateSelection: Bool,
+         eventPills: [Date: [LegendType]],
+         action: @escaping (Date) -> Void) {
+        self.currentMonth = currentMonth
+        self.availableDatesForSelection = availableDatesForSelection
+        self.enableDateSelection = enableDateSelection
+        self.action = action
+        self.eventPills = eventPills
+    }
+    func generateCalendarDays() -> [Date?] {
+        let firstOfMonth = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: currentMonth))!
+        let firstWeekday = calendar.component(.weekday, from: firstOfMonth)
+        let range = calendar.range(of: .day, in: .month, for: firstOfMonth)!
+        var days: [Date?] = Array(repeating: nil, count: firstWeekday - 1) // Padding for proper alignment
+        for day in range {
+            if let date = calendar.date(from: DateComponents(year: calendar.component(.year, from: currentMonth),
+                                                             month: calendar.component(.month, from: currentMonth),
+                                                             day: day)) {
+                days.append(date)
+            }
+        }
+        return days
+    }
+    func previousMonth() {
+        if let newMonth = calendar.date(byAdding: .month, value: -1, to: currentMonth) {
+            currentMonth = newMonth
+        }
+    }
+    func nextMonth() {
+        if let newMonth = calendar.date(byAdding: .month, value: 1, to: currentMonth) {
+            currentMonth = newMonth
+        }
+    }
+    func isFirstMonth() -> Bool {
+        let today = Date()
+        return calendar.compare(currentMonth, to: today, toGranularity: .month) == .orderedSame
+    }
+    func isPastDate(_ date: Date) -> Bool {
+        return calendar.compare(date, to: Date(), toGranularity: .day) == .orderedAscending
+    }
+}
+*/
